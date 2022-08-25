@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NovelSocial</string>
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <string name="back4app_app_id">d7ERFN8wHE3BStSazXAe77FGqiHb7aT1ko0RNSKu</string>
+    <string name="back4app_client_key">Gg0Jh9MEXnBMKvI3yhtFOzmimZpfmGYhU0Wybu9b</string>
 </resources>
