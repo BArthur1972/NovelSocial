@@ -7,12 +7,11 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.example.novelsocial.Fragments.HomeFragment;
-import com.example.novelsocial.Fragments.LibraryFragment;
-import com.example.novelsocial.Fragments.ProfileFragment;
-import com.example.novelsocial.Fragments.SearchFragment;
+import com.example.novelsocial.fragments.HomeFragment;
+import com.example.novelsocial.fragments.LibraryFragment;
+import com.example.novelsocial.fragments.ProfileFragment;
+import com.example.novelsocial.fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 

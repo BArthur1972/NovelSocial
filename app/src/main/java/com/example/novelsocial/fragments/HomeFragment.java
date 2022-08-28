@@ -1,4 +1,4 @@
-package com.example.novelsocial.Fragments;
+package com.example.novelsocial.fragments;
 
 import android.os.Bundle;
 
