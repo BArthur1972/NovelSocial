@@ -2,14 +2,18 @@ package com.example.novelsocial;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.parse.ParseUser;
 
@@ -72,10 +76,21 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.mi_logout){
             goToLoginActivity();
+            return true;
+
+        } else if (item.getItemId() == R.id.mi_search_view) {
+            // Navigate to Search Fragment when Search MenuItem in the Action bar is selected
+            Fragment searchFragment = new SearchFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, searchFragment).commit();
+
+            // Set selected item in bottom navigation view to search.
+            BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+            bottomNavigationView.setSelectedItemId(R.id.search_fragment);
             return true;
         }
         return super.onOptionsItemSelected(item);

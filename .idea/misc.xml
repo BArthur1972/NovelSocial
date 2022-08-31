@@ -13,10 +13,11 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.26666666666666666" />
         <entry key="app/src/main/res/layout/book_list.xml" value="0.27823691460055094" />
+        <entry key="app/src/main/res/layout/book_list_item.xml" value="0.16388044579533942" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2722371967654987" />
         <entry key="app/src/main/res/layout/fragment_library.xml" value="0.2722371967654987" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2722371967654987" />
-        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.3926168354373737" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.23820754716981132" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.34322916666666664" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.3138888888888889" />
       </map>

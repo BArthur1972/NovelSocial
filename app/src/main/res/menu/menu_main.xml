@@ -3,9 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/mi_search_view"
+        android:icon="@drawable/ic_outline_search_24"
+        app:showAsAction="always|collapseActionView"
+        android:title="Search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:orderInCategory="5">
+    </item>
+
+    <item
         android:id="@+id/mi_logout"
         android:icon="@drawable/ic_baseline_close_24"
-        app:showAsAction="always"
+        app:showAsAction="never"
         android:title="Logout">
     </item>
 </menu>

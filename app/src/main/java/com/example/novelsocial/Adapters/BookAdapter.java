@@ -26,8 +26,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     private OnItemClickListener mListener;
 
     // Constructor for the BookAdapter class
-    public BookAdapter(Context context, ArrayList<Book> aBooks) {
-        mBooks = aBooks;
+    public BookAdapter(Context context, ArrayList<Book> allBooks) {
+        mBooks = allBooks;
         mContext = context;
     }
 
