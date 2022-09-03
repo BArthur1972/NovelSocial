@@ -12,12 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.parse.ParseUser;
-import android.widget.Toast;
 
-import com.example.novelsocial.Fragments.HomeFragment;
-import com.example.novelsocial.Fragments.LibraryFragment;
-import com.example.novelsocial.Fragments.ProfileFragment;
-import com.example.novelsocial.Fragments.SearchFragment;
+import com.example.novelsocial.fragments.HomeFragment;
+import com.example.novelsocial.fragments.LibraryFragment;
+import com.example.novelsocial.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -31,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         final HomeFragment homeFragment = new HomeFragment();
         final LibraryFragment libraryFragment = new LibraryFragment();
         final ProfileFragment profileFragment = new ProfileFragment();
-        final SearchFragment searchFragment = new SearchFragment();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -51,9 +48,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (id == R.id.library_fragment) {
                     fragmentToShow = libraryFragment;
-                }
-                else if (id == R.id.search_fragment) {
-                    fragmentToShow = searchFragment;
                 }
                 else if (id == R.id.profile_fragment) {
                     fragmentToShow = profileFragment;
@@ -75,8 +69,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.mi_logout){
+        if(item.getItemId() == R.id.action_logout){
             goToLoginActivity();
+            return true;
+
+        } else if (item.getItemId() == R.id.action_search_activity) {
+            // Navigate to Search Fragment when Search MenuItem in the Action bar is selected
+            goToSearchActivity();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -84,6 +83,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void logOut() {
         ParseUser.logOut();
+    }
+
+    private void goToSearchActivity() {
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
     }
 
     private void goToLoginActivity() {
