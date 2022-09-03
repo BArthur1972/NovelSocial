@@ -15,13 +15,6 @@
         android:title="Library"
         app:showAsAction="always" />
     <item
-        android:id="@+id/search_fragment"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_search_24"
-        android:title="Search"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/profile_fragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_person_24"

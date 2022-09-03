@@ -2,25 +2,20 @@ package com.example.novelsocial;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.parse.ParseUser;
 
 import com.example.novelsocial.fragments.HomeFragment;
 import com.example.novelsocial.fragments.LibraryFragment;
 import com.example.novelsocial.fragments.ProfileFragment;
-import com.example.novelsocial.fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -34,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         final HomeFragment homeFragment = new HomeFragment();
         final LibraryFragment libraryFragment = new LibraryFragment();
         final ProfileFragment profileFragment = new ProfileFragment();
-        final SearchFragment searchFragment = new SearchFragment();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -55,9 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 else if (id == R.id.library_fragment) {
                     fragmentToShow = libraryFragment;
                 }
-                else if (id == R.id.search_fragment) {
-                    fragmentToShow = searchFragment;
-                }
                 else if (id == R.id.profile_fragment) {
                     fragmentToShow = profileFragment;
                 }
@@ -76,21 +67,15 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.mi_logout){
+        if(item.getItemId() == R.id.action_logout){
             goToLoginActivity();
             return true;
 
-        } else if (item.getItemId() == R.id.mi_search_view) {
+        } else if (item.getItemId() == R.id.action_search_activity) {
             // Navigate to Search Fragment when Search MenuItem in the Action bar is selected
-            Fragment searchFragment = new SearchFragment();
-            getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, searchFragment).commit();
-
-            // Set selected item in bottom navigation view to search.
-            BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-            bottomNavigationView.setSelectedItemId(R.id.search_fragment);
+            goToSearchActivity();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -98,6 +83,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void logOut() {
         ParseUser.logOut();
+    }
+
+    private void goToSearchActivity() {
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
     }
 
     private void goToLoginActivity() {

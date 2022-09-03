@@ -31,6 +31,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         mContext = context;
     }
 
+    public void setFilteredList(List<Book> filteredList) {
+        this.mBooks = filteredList;
+        notifyDataSetChanged();
+    }
+
     public interface OnItemClickListener {
         void onItemClick(View itemView, int position);
     }
@@ -49,9 +54,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             super(itemView);
 
             cardView = itemView.findViewById(R.id.cv_list_item);
-            ivCover = (ImageView) itemView.findViewById(R.id.iv_book_cover);
-            tvTitle = (TextView) itemView.findViewById(R.id.tv_title);
-            tvAuthor = (TextView) itemView.findViewById(R.id.tv_author);
+            ivCover = itemView.findViewById(R.id.iv_book_cover);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvAuthor = itemView.findViewById(R.id.tv_author);
 
             itemView.setOnClickListener((View view) -> {
                 clickListener.onItemClick(itemView, getAdapterPosition());

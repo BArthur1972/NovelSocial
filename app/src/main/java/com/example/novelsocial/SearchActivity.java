@@ -1,27 +1,21 @@
-package com.example.novelsocial.fragments;
-
-import android.os.Bundle;
+package com.example.novelsocial;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.novelsocial.Adapters.BookAdapter;
-import com.example.novelsocial.R;
 import com.example.novelsocial.client.BookClient;
 import com.example.novelsocial.models.Book;
 
@@ -29,50 +23,50 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import okhttp3.Headers;
 
-public class SearchFragment extends Fragment {
+public class SearchActivity extends AppCompatActivity {
 
-    private RecyclerView rvBooks;
     private BookAdapter adapter;
     private ArrayList<Book> allBooks;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search);
+
+        // Add the back button in the ActionBar to go back a previous page
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         // This is where you set up the views and click listeners
-        rvBooks = view.findViewById(R.id.postRecyclerView);
+        RecyclerView rvBooks = findViewById(R.id.postRecyclerView);
 
         // Initialize ArrayList
         allBooks = new ArrayList<>();
 
         // Set adapter on RecyclerView
-        adapter = new BookAdapter(requireContext(), allBooks);
+        adapter = new BookAdapter(SearchActivity.this, allBooks);
         rvBooks.setAdapter(adapter);
 
         // Set layout manager on RecyclerView
-        rvBooks.setLayoutManager(new LinearLayoutManager(requireContext()));
+        rvBooks.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
 
         // TODO: Navigate to DetailFragment for a particular book
-//        adapter.setOnItemClickListener((itemView, position) -> {
-//            Toast.makeText(requireContext(), "Item at position " + position + " has been clicked", Toast.LENGTH_SHORT).show();
-//        });
+        adapter.setOnItemClickListener((itemView, position) -> {
+            Toast.makeText(getApplicationContext(), "Item at position " + position + " has been clicked", Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_main, menu);
-        MenuItem searchItem = menu.findItem(R.id.mi_search_view);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_search, menu);
 
+        // Set up search view in ActionBar
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
         // Expand the search view and request focus
@@ -91,19 +85,55 @@ public class SearchFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                return false;
+                filterList(newText);
+                return true;
+            }
+
+            private void filterList(String text) {
+                List<Book> filteredList = new ArrayList<>();
+                for (Book book : allBooks) {
+                    if (book.getTitle().toLowerCase().contains(text.toLowerCase())) {
+                        filteredList.add(book);
+                    }
+                }
+                if (filteredList.isEmpty()) {
+                    Toast.makeText(SearchActivity.this, "Your query is not in the List", Toast.LENGTH_SHORT).show();
+                } else {
+                    adapter.setFilteredList(filteredList);
+                }
             }
         });
+        return true;
     }
 
-    // Make API request to fetch books using entry in SearchView
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_search) {
+            // Search for books
+            return true;
+        }
+
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+        // Make API request to fetch books using entry in SearchView
     public void fetchBooks(String bookQuery) {
+
+        ProgressBar progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+
         // Create BookClient object and call the getBooks method which makes the API call
         BookClient client = new BookClient();
         client.getBooks(bookQuery, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON jsonResponse) {
+
                 try {
                     JSONArray docs;
                     if (jsonResponse != null) {
@@ -120,11 +150,9 @@ public class SearchFragment extends Fragment {
                         for (Book book: books) {
                             allBooks.add(book);
                         }
-
-                        Log.i(SearchFragment.class.getSimpleName(),
-                                "All books have been Added");
                     }
                     adapter.notifyDataSetChanged();
+                    progressBar.setVisibility(ProgressBar.GONE);
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
@@ -133,7 +161,8 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                Log.e(SearchFragment.class.getSimpleName(),
+                progressBar.setVisibility(ProgressBar.GONE);
+                Log.e(SearchActivity.class.getSimpleName(),
                         "Request failed with code: " + statusCode + " , Response message: " + response);
             }
         });

@@ -3,10 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_search_activity"
-        android:icon="@drawable/ic_baseline_search_24"
-        app:showAsAction="always"
-        android:title="SearchActivity">
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_outline_search_24"
+        app:showAsAction="always|collapseActionView"
+        android:title="SearchView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:orderInCategory="5">
     </item>
 
     <item
