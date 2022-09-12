@@ -7,13 +7,14 @@ import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.view.View;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.novelsocial.Adapters.BookAdapter;
 import com.example.novelsocial.client.BookClient;
@@ -21,9 +22,9 @@ import com.example.novelsocial.models.Book;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import okhttp3.Headers;
@@ -55,9 +56,12 @@ public class SearchActivity extends AppCompatActivity {
         // Set layout manager on RecyclerView
         rvBooks.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
 
-        // TODO: Navigate to DetailFragment for a particular book
         adapter.setOnItemClickListener((itemView, position) -> {
-            Toast.makeText(getApplicationContext(), "Item at position " + position + " has been clicked", Toast.LENGTH_SHORT).show();
+            // Navigate to Book DetailsFragment when a book is clicked
+            Intent intent = new Intent(SearchActivity.this, BookDetailsActivity.class);
+            // Add book object containing book information to send to Activity
+            intent.putExtra("BookObject", Parcels.wrap(allBooks.get(position)));
+            startActivity(intent);
         });
     }
 
@@ -85,22 +89,7 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filterList(newText);
                 return true;
-            }
-
-            private void filterList(String text) {
-                List<Book> filteredList = new ArrayList<>();
-                for (Book book : allBooks) {
-                    if (book.getTitle().toLowerCase().contains(text.toLowerCase())) {
-                        filteredList.add(book);
-                    }
-                }
-                if (filteredList.isEmpty()) {
-                    Toast.makeText(SearchActivity.this, "Your query is not in the List", Toast.LENGTH_SHORT).show();
-                } else {
-                    adapter.setFilteredList(filteredList);
-                }
             }
         });
         return true;
@@ -110,7 +99,6 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_search) {
-            // Search for books
             return true;
         }
 
@@ -121,11 +109,11 @@ public class SearchActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-        // Make API request to fetch books using entry in SearchView
+    // Make API request to fetch books using entry in SearchView
     public void fetchBooks(String bookQuery) {
-
-        ProgressBar progressBar = findViewById(R.id.progress_bar);
-        progressBar.setVisibility(ProgressBar.VISIBLE);
+        LottieAnimationView progressAnimation = findViewById(R.id.progressAnimation);
+        progressAnimation.setVisibility(View.VISIBLE);
+        progressAnimation.playAnimation();
 
         // Create BookClient object and call the getBooks method which makes the API call
         BookClient client = new BookClient();
@@ -147,24 +135,28 @@ public class SearchActivity extends AppCompatActivity {
                         allBooks.clear();
 
                         // Add new Book objects to ArrayList
-                        for (Book book: books) {
-                            allBooks.add(book);
-                        }
+                        allBooks.addAll(books);
                     }
                     adapter.notifyDataSetChanged();
-                    progressBar.setVisibility(ProgressBar.GONE);
                 }
                 catch (JSONException e) {
+                    stopProgressAnimation(progressAnimation);
                     e.printStackTrace();
                 }
+                stopProgressAnimation(progressAnimation);
             }
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                progressBar.setVisibility(ProgressBar.GONE);
+                stopProgressAnimation(progressAnimation);
                 Log.e(SearchActivity.class.getSimpleName(),
                         "Request failed with code: " + statusCode + " , Response message: " + response);
             }
         });
+    }
+
+    public void stopProgressAnimation(LottieAnimationView animationView) {
+        animationView.cancelAnimation();
+        animationView.setVisibility(View.INVISIBLE);
     }
 }

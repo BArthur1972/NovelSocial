@@ -5,9 +5,11 @@ import android.text.TextUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 
+@Parcel
 public class Book {
 
     private String openLibraryId;
@@ -16,6 +18,7 @@ public class Book {
     private String publisher;
     private int pages;
     private String ISBN;
+    private String genre;
 
     public String getOpenLibraryId() {
         return openLibraryId;
@@ -51,6 +54,14 @@ public class Book {
 
     public void setPages(int pages) {
         this.pages = pages;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public String getBookCoverUrl() {
@@ -89,6 +100,12 @@ public class Book {
                 JSONArray jsonArray = jsonObject.getJSONArray("isbn");
                 String isbn = (String) jsonArray.get(0);
                 book.setISBN(isbn);
+            }
+
+            if (jsonObject.has("subject")) {
+                JSONArray jsonArray = jsonObject.getJSONArray("subject");
+                String genre = (String) jsonArray.get(0);
+                book.setGenre(genre);
             }
 
             // Assign title and author
@@ -134,5 +151,4 @@ public class Book {
             return "";
         }
     }
-
 }

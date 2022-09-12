@@ -14,11 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NovelSocial">
         <activity
+            android:name=".BookDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -30,7 +33,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <meta-data
             android:name="com.parse.SERVER_URL"
