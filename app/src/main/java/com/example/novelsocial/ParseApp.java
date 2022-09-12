@@ -1,7 +1,6 @@
 package com.example.novelsocial;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.parse.Parse;
 

@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 goToMainActivity();
             }
             else {
+                assert e != null;
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Error Logging In, Try Again", Toast.LENGTH_SHORT).show();
             }

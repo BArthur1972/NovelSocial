@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     private List<Book> mBooks;
-    private Context mContext;
+    private final Context mContext;
     private OnItemClickListener mListener;
 
     // Constructor for the BookAdapter class
@@ -44,7 +45,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         this.mListener = listener;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public CardView cardView;
         public ImageView ivCover;
         public TextView tvTitle;
@@ -58,13 +59,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvAuthor = itemView.findViewById(R.id.tv_author);
 
-            itemView.setOnClickListener((View view) -> {
-                clickListener.onItemClick(itemView, getAdapterPosition());
-            });
+            itemView.setOnClickListener((View view) -> clickListener.onItemClick(itemView, getAdapterPosition()));
         }
     }
 
 
+    @NonNull
     @Override
     public BookAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
@@ -72,8 +72,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
         View bookView = inflater.inflate(R.layout.book_list_item, parent, false);
 
-        BookAdapter.ViewHolder viewHolder = new BookAdapter.ViewHolder(bookView, mListener);
-        return viewHolder;
+        return new ViewHolder(bookView, mListener);
     }
 
     @Override
