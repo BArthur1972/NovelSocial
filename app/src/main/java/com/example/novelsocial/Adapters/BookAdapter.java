@@ -22,19 +22,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
-    private List<Book> mBooks;
-    private final Context mContext;
-    private OnItemClickListener mListener;
+    private List<Book> books;
+    private final Context context;
+    private OnItemClickListener listener;
 
     // Constructor for the BookAdapter class
     public BookAdapter(Context context, ArrayList<Book> allBooks) {
-        mBooks = allBooks;
-        mContext = context;
-    }
-
-    public void setFilteredList(List<Book> filteredList) {
-        this.mBooks = filteredList;
-        notifyDataSetChanged();
+        books = allBooks;
+        this.context = context;
     }
 
     public interface OnItemClickListener {
@@ -42,7 +37,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
-        this.mListener = listener;
+        this.listener = listener;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -72,12 +67,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
         View bookView = inflater.inflate(R.layout.book_list_item, parent, false);
 
-        return new ViewHolder(bookView, mListener);
+        return new ViewHolder(bookView, listener);
     }
 
     @Override
     public void onBindViewHolder(BookAdapter.ViewHolder viewHolder, int position) {
-        Book book = mBooks.get(position);
+        Book book = books.get(position);
 
         viewHolder.tvTitle.setText(book.getTitle());
         viewHolder.tvAuthor.setText(book.getAuthor());
@@ -93,11 +88,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return mBooks.size();
+        return books.size();
     }
 
     // Easy access to the context object in the recyclerview
     private Context getContext() {
-        return mContext;
+        return context;
     }
 }
