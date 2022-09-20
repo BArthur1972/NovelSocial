@@ -9,7 +9,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.3005" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.22356091030789826" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.2609375" />
-        <entry key="app/src/main/res/layout/activity_book_details.xml" value="0.28152618408203134" />
+        <entry key="app/src/main/res/layout/activity_book_details.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.18877410888671875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.279193115234375" />
@@ -18,12 +18,14 @@
         <entry key="app/src/main/res/layout/book_list_item.xml" value="0.16388044579533942" />
         <entry key="app/src/main/res/layout/fragment_book_details.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2722371967654987" />
-        <entry key="app/src/main/res/layout/fragment_library.xml" value="0.2722371967654987" />
+        <entry key="app/src/main/res/layout/fragment_library.xml" value="0.10249307479224377" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2722371967654987" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1828793774319066" />
+        <entry key="app/src/main/res/layout/library_item.xml" value="0.19072164948453607" />
         <entry key="app/src/main/res/menu/bottom_navigation.xml" value="0.3302083333333333" />
+        <entry key="app/src/main/res/menu/menu_book_details.xml" value="0.25874125874125875" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.34322916666666664" />
-        <entry key="app/src/main/res/menu/menu_main.xml" value="0.3138888888888889" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.22839506172839505" />
         <entry key="app/src/main/res/menu/menu_search.xml" value="0.21388888888888888" />
       </map>
     </option>

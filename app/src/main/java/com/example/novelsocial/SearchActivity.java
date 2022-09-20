@@ -102,7 +102,7 @@ public class SearchActivity extends AppCompatActivity {
             return true;
         }
 
-        if (item.getItemId() == android.R.id.home) {
+        else if (item.getItemId() == android.R.id.home) {
             this.finish();
             return true;
         }
