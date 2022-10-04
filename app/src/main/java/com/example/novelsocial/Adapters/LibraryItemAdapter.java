@@ -1,6 +1,7 @@
 package com.example.novelsocial.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,17 +69,16 @@ public class LibraryItemAdapter extends RecyclerView.Adapter<LibraryItemAdapter.
                 Glide.with(context).load(image).into(bookCover);
             }
 
-            removeButton.setOnClickListener(view -> {
-                item.deleteInBackground(e -> {
-                    if (e != null) {
-                        Toast.makeText(context, "Failed to Delete", Toast.LENGTH_SHORT).show();
-                    } else {
-                        int currentItem = getAdapterPosition();
-                        libraryItemList.remove(currentItem);
-                        notifyItemRemoved(currentItem);
-                    }
-                });
-            });
+            removeButton.setOnClickListener(view -> item.deleteInBackground(e -> {
+                if (e != null) {
+                    Toast.makeText(context, "Failed to Delete", Toast.LENGTH_SHORT).show();
+                    Log.e(getClass().getSimpleName(), e.getMessage());
+                } else {
+                    int currentItem = getAdapterPosition();
+                    libraryItemList.remove(currentItem);
+                    notifyItemRemoved(currentItem);
+                }
+            }));
         }
     }
 }

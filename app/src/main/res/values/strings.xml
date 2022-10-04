@@ -4,4 +4,8 @@
 
     <string name="back4app_app_id">d7ERFN8wHE3BStSazXAe77FGqiHb7aT1ko0RNSKu</string>
     <string name="back4app_client_key">Gg0Jh9MEXnBMKvI3yhtFOzmimZpfmGYhU0Wybu9b</string>
+    <string name="home_message">Don\'t Know What To Search? Check Out Some Books From These Popular Genres!</string>
+    <string name="rv_parent_text_view">Title</string>
+    <string name="book_cover_description">Book Image</string>
+    <string name="bookAuthor">Author:</string>
 </resources>
