@@ -26,6 +26,9 @@ public class LibraryFragment extends Fragment {
     List<LibraryItem> libraryItems;
     LibraryItemAdapter adapter;
 
+    public LibraryFragment() {
+        // Required empty public constructor
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

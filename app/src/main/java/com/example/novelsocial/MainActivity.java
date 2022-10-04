@@ -81,17 +81,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void logOut() {
-        ParseUser.logOut();
-    }
-
     private void goToSearchActivity() {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
 
     private void goToLoginActivity() {
-        logOut();
+        ParseUser.logOut();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
