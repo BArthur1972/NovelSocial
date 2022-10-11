@@ -24,7 +24,6 @@ public class Book {
         return openLibraryId;
     }
 
-
     public String getTitle() {
         return title;
     }

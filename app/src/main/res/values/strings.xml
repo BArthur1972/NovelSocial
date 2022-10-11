@@ -8,4 +8,5 @@
     <string name="rv_parent_text_view">Title</string>
     <string name="book_cover_description">Book Image</string>
     <string name="bookAuthor">Author:</string>
+    <string name="open_in_web">Open in Web</string>
 </resources>
