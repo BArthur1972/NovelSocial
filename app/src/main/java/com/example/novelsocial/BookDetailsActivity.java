@@ -3,6 +3,7 @@ package com.example.novelsocial;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -54,6 +55,13 @@ public class BookDetailsActivity extends AppCompatActivity {
             });
         });
 
+        // Navigate to WebView Activity when button is clicked
+        Button toWebViewActivity = findViewById(R.id.bt_web_view_activity);
+
+        Log.i(BookDetailsActivity.this.getClass().getSimpleName(), "Book's ISBN " + book.getISBN());
+
+        toWebViewActivity.setOnClickListener(v -> goToWebViewActivity((book.getISBN())));
+
         // Find all components we want to populate
         ImageView bookImageCover = findViewById(R.id.iv_book_cover_view);
         TextView bookTitle = findViewById(R.id.tv_book_title);
@@ -94,5 +102,11 @@ public class BookDetailsActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void goToWebViewActivity(String isbn) {
+        Intent intent = new Intent(BookDetailsActivity.this, WebViewActivity.class);
+        intent.putExtra("BookISBN", isbn);
+        startActivity(intent);
     }
 }
