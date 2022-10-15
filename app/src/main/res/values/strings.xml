@@ -12,4 +12,5 @@
     <string name="search_button_title">SearchView</string>
     <string name="logout_menu_item">Logout</string>
     <string name="scan_qr_code">Scan QR Code</string>
+    <string name="code_found_button">Code found</string>
 </resources>

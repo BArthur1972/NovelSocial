@@ -127,6 +127,56 @@ public class Book {
         return book;
     }
 
+    public static Book fromJsonWithScannedId(JSONObject jsonObject) {
+        Book book = new Book();
+        try {
+            // Assign the OpenLibraryId for the book
+            if (jsonObject.has("cover_edition_key")) {
+                book.openLibraryId = jsonObject.getString("cover_edition_key");
+            } else if (jsonObject.has("edition_key")) {
+                final JSONArray ids = jsonObject.getJSONArray("edition_key");
+                book.openLibraryId = ids.getString(0);
+            }
+
+            // Assign the publisher for the book
+            if (jsonObject.has("publisher")) {
+                JSONArray jsonArray = jsonObject.getJSONArray("publisher");
+                if (jsonArray.length() > 0) {
+                    String firstPublisher = (String) jsonArray.get(0);
+                    book.setPublisher(firstPublisher);
+                }
+            }
+
+            // Assign the number of pages for the book
+            if (jsonObject.has("number_of_pages_median")) {
+                Integer bookPages = (Integer) jsonObject.getInt("number_of_pages_median");
+                book.setPages(bookPages);
+            }
+
+            // Assign the ISBN code for the book
+            if (jsonObject.has("isbn")) {
+                JSONArray jsonArray = jsonObject.getJSONArray("isbn");
+                String isbn = (String) jsonArray.get(0);
+                book.setISBN(isbn);
+            }
+
+            if (jsonObject.has("subject")) {
+                JSONArray jsonArray = jsonObject.getJSONArray("subject");
+                String genre = (String) jsonArray.get(0);
+                book.setGenre(genre);
+            }
+
+            // Assign title and author
+            book.title = jsonObject.has("title_suggest") ? jsonObject.getString("title_suggest") : "";
+            book.author = getAuthor(jsonObject);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return book;
+    }
+
     // Get a list of Books from a JSON object
     public static ArrayList<Book> fromJson(JSONArray jsonArray) {
         ArrayList<Book> books = new ArrayList<>(jsonArray.length());
