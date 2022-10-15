@@ -105,7 +105,10 @@ public class SearchActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_search) {
             return true;
         }
-
+        else if (item.getItemId() == R.id.action_scan_qr_code){
+            goToScannerActivity();
+            return true;
+        }
         else if (item.getItemId() == android.R.id.home) {
             this.finish();
             return true;
@@ -162,5 +165,10 @@ public class SearchActivity extends AppCompatActivity {
     public void stopProgressAnimation(LottieAnimationView animationView) {
         animationView.cancelAnimation();
         animationView.setVisibility(View.INVISIBLE);
+    }
+
+    public void goToScannerActivity() {
+        Intent intent = new Intent(this, ScannerActivity.class);
+        startActivity(intent);
     }
 }

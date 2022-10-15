@@ -9,4 +9,7 @@
     <string name="book_cover_description">Book Image</string>
     <string name="bookAuthor">Author:</string>
     <string name="open_in_web">Open in Web</string>
+    <string name="search_button_title">SearchView</string>
+    <string name="logout_menu_item">Logout</string>
+    <string name="scan_qr_code">Scan QR Code</string>
 </resources>
