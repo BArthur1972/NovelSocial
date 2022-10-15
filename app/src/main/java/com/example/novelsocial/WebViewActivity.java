@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.ActionProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +12,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.airbnb.lottie.LottieAnimationView;
+import com.example.novelsocial.databinding.ActivityWebViewBinding;
 
 import java.util.Objects;
 
@@ -24,7 +23,11 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_view);
+
+       ActivityWebViewBinding binding = ActivityWebViewBinding.inflate(getLayoutInflater());
+
+        View root = binding.getRoot();
+        setContentView(root);
 
         // Add the back button in the ActionBar to go back a previous page
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);

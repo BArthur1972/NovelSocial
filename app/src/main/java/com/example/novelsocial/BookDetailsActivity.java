@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.novelsocial.databinding.ActivityBookDetailsBinding;
 import com.example.novelsocial.models.Book;
 import com.example.novelsocial.models.LibraryItem;
 
@@ -29,7 +31,12 @@ public class BookDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_details);
+
+        ActivityBookDetailsBinding binding = ActivityBookDetailsBinding.inflate(getLayoutInflater());
+
+        // Root of the layout
+        View view = binding.getRoot();
+        setContentView(view);
 
         // Retrieve book data from Book Object in the bundle
         Book book = (Book) Parcels.unwrap(getIntent().getParcelableExtra("BookObject"));
@@ -38,7 +45,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         // Add book to Library
-        Button addBookToLibrary = findViewById(R.id.bt_add_to_library);
+        Button addBookToLibrary = binding.btAddToLibrary;
         addBookToLibrary.setOnClickListener(v -> {
             ParseUser currentUser = ParseUser.getCurrentUser();
             LibraryItem libraryItem = new LibraryItem(book);
@@ -63,12 +70,12 @@ public class BookDetailsActivity extends AppCompatActivity {
         toWebViewActivity.setOnClickListener(v -> goToWebViewActivity((book.getISBN())));
 
         // Find all components we want to populate
-        ImageView bookImageCover = findViewById(R.id.iv_book_cover_view);
-        TextView bookTitle = findViewById(R.id.tv_book_title);
-        TextView bookAuthor = findViewById(R.id.tv_author_name);
-        TextView bookPublisher = findViewById(R.id.tv_publisher_name);
-        TextView bookGenre = findViewById(R.id.tv_genre);
-        TextView bookPages = findViewById(R.id.tv_no_of_pages);
+        ImageView bookImageCover = binding.ivBookCoverView;
+        TextView bookTitle = binding.tvBookTitle;
+        TextView bookAuthor = binding.tvAuthorName;
+        TextView bookPublisher = binding.tvPublisherName;
+        TextView bookGenre = binding.tvGenre;
+        TextView bookPages = binding.tvNoOfPages;
 
         // Set Book Cover in layout and remaining views with their respective values
         Picasso.get()

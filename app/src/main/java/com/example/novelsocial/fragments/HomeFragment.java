@@ -15,9 +15,9 @@ import android.view.ViewGroup;
 
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.novelsocial.Adapters.HomeParentItemAdapter;
-import com.example.novelsocial.R;
 import com.example.novelsocial.SearchActivity;
 import com.example.novelsocial.client.BookSubjectClient;
+import com.example.novelsocial.databinding.FragmentHomeBinding;
 import com.example.novelsocial.models.HomeChildItem;
 import com.example.novelsocial.models.HomeParentItem;
 
@@ -31,6 +31,7 @@ import okhttp3.Headers;
 
 public class HomeFragment extends Fragment {
 
+    FragmentHomeBinding binding;
     RecyclerView parentRecyclerView;
     List<HomeParentItem> parentItemList;
     List<HomeChildItem> childItemList;
@@ -41,17 +42,20 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        binding = FragmentHomeBinding.inflate(getLayoutInflater(), container, false);
+
+        // layout of fragment is stored in a special property called root
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        parentRecyclerView = view.findViewById(R.id.rv_parentRecyclerView);
+        parentRecyclerView = binding.rvParentRecyclerView;
 
         String[] genres = new String[]{"Fantasy", "Adventure", "Love", "Fiction", "History", "Biography", "Poetry"};
         parentItemList = new ArrayList<>();

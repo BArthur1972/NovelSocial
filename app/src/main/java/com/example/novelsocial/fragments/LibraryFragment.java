@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.novelsocial.Adapters.LibraryItemAdapter;
-import com.example.novelsocial.R;
+import com.example.novelsocial.databinding.FragmentLibraryBinding;
 import com.example.novelsocial.models.LibraryItem;
 import com.parse.ParseQuery;
 
@@ -23,6 +23,7 @@ import java.util.List;
 
 public class LibraryFragment extends Fragment {
 
+    FragmentLibraryBinding binding;
     List<LibraryItem> libraryItems;
     LibraryItemAdapter adapter;
 
@@ -30,10 +31,13 @@ public class LibraryFragment extends Fragment {
         // Required empty public constructor
     }
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_library, container, false);
+        binding = FragmentLibraryBinding.inflate(getLayoutInflater(), container, false);
+
+        // layout of fragment is stored in a special property called root
+        return binding.getRoot();
     }
 
     @Override
@@ -43,7 +47,7 @@ public class LibraryFragment extends Fragment {
         // Initialize empty list
         libraryItems = new ArrayList<>();
 
-        RecyclerView rvLibrary  = view.findViewById(R.id.rv_library_items);
+        RecyclerView rvLibrary  = binding.rvLibraryItems;
         adapter = new LibraryItemAdapter(getContext(), libraryItems);
 
         // Set adapter on RecyclerView
