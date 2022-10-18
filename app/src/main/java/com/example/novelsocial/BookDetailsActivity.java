@@ -65,8 +65,6 @@ public class BookDetailsActivity extends AppCompatActivity {
         // Navigate to WebView Activity when button is clicked
         Button toWebViewActivity = findViewById(R.id.bt_web_view_activity);
 
-        Log.i(BookDetailsActivity.this.getClass().getSimpleName(), "Book's ISBN " + book.getISBN());
-
         toWebViewActivity.setOnClickListener(v -> goToWebViewActivity((book.getISBN())));
 
         // Find all components we want to populate
@@ -84,9 +82,9 @@ public class BookDetailsActivity extends AppCompatActivity {
                 .into(bookImageCover);
 
         bookTitle.setText(book.getTitle());
-        bookAuthor.setText(book.getAuthor());
-        bookPublisher.setText(String.valueOf(book.getPublisher()));
-        bookGenre.setText(book.getGenre());
+        bookAuthor.setText(String.format("Author: %s", book.getAuthor()));
+        bookPublisher.setText(String.format("Publisher: %s", book.getPublisher()));
+        bookGenre.setText(String.format("Genre: %s", book.getGenre()));
         bookPages.setText(String.format(Locale.ENGLISH, "No. Of Pages: %d", book.getPages()));
     }
 

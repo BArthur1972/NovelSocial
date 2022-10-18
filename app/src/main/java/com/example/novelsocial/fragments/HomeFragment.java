@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
     // Make API request to fetch books based on genre
     public void fetchBooks(String genre) {
 
-        // Create BookClient object and call the getBooks method which makes the API call
+        // Create BookSubjectClient object and call the getBooks method which makes the API call
         BookSubjectClient client = new BookSubjectClient();
         client.getBooks(genre, new JsonHttpResponseHandler() {
 

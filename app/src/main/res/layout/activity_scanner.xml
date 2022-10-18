@@ -9,16 +9,16 @@
     <androidx.camera.view.PreviewView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/qrcode_preview"/>
+        android:id="@+id/barcode_preview"/>
 
     <Button
-        android:id="@+id/bt_scan_qr_code"
+        android:id="@+id/bt_scan_barcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:text="@string/code_found_button"
         app:cornerRadius="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/qrcode_preview"
+        app:layout_constraintBottom_toBottomOf="@+id/barcode_preview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

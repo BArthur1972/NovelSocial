@@ -2,7 +2,6 @@ package com.example.novelsocial;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.Preview;
@@ -22,60 +21,88 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.example.novelsocial.client.ScannedBookClient;
 import com.example.novelsocial.databinding.ActivityScannerBinding;
 import com.example.novelsocial.models.Book;
-import com.example.novelsocial.utils.QRCodeFoundListener;
+import com.example.novelsocial.utils.BarcodeFoundListener;
 import com.google.common.util.concurrent.ListenableFuture;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.parceler.Parcels;
 
 import java.util.concurrent.ExecutionException;
+
+import okhttp3.Headers;
 
 public class ScannerActivity extends AppCompatActivity {
 
     public static final int PERMISSION_REQUEST_CAMERA = 0;
     private ListenableFuture<ProcessCameraProvider> cameraProviderListenableFuture;
     private PreviewView previewView;
-    private Button qrCodeFound;
-    private String qrCode;
+    private Button barcodeFoundBtn;
+    private String barcode;
     private Book bookObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        com.example.novelsocial.databinding.ActivityScannerBinding binding = ActivityScannerBinding.inflate(getLayoutInflater());
+        ActivityScannerBinding binding = ActivityScannerBinding.inflate(getLayoutInflater());
 
         View view = binding.getRoot();
         setContentView(view);
 
-        previewView = binding.qrcodePreview;
-        qrCodeFound = binding.btScanQrCode;
+        previewView = binding.barcodePreview;
+        barcodeFoundBtn = binding.btScanBarcode;
 
         // Make button invisible when no QR Code is found
-        qrCodeFound.setVisibility(View.INVISIBLE);
+        barcodeFoundBtn.setVisibility(View.INVISIBLE);
 
-        qrCodeFound.setOnClickListener(v -> {
-            Toast.makeText(ScannerActivity.this.getApplicationContext(), qrCode, Toast.LENGTH_SHORT).show();
-            Log.i(ScannerActivity.class.getSimpleName(), "QR Code Found: " + qrCode);
+        barcodeFoundBtn.setOnClickListener(v -> {
+            Toast.makeText(ScannerActivity.this.getApplicationContext(), barcode, Toast.LENGTH_SHORT).show();
+            Log.i(ScannerActivity.class.getSimpleName(), "ISBN Found: " + barcode);
 
-//            // Get Book Information using the QR Code
-//            getBookObject();
-//
-//            Intent intent = new Intent(this, BookDetailsActivity.class);
-//            intent.putExtra("BookObject", Parcels.wrap(bookObject));
-//            startActivity(intent);
-//            finish();
+            // Get Book Information using the QR Code and navigate to the
+            // BookDetailsActivity with the Book object found as an Intent extra
+            getBookObject(barcode);
         });
-        
+
         cameraProviderListenableFuture = ProcessCameraProvider.getInstance(ScannerActivity.this.getApplicationContext());
         requestCamera();
     }
 
-    private void getBookObject() {
+    public void getBookObject(String code) {
+        // Create ScannedBookClient object and call the getBooks method which makes the API call
+        ScannedBookClient scannedBookClient= new ScannedBookClient();
+        scannedBookClient.getBooks(code, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                JSONObject jsonResponse = json.jsonObject;
+                try {
+                    JSONObject body = jsonResponse.getJSONObject("ISBN:" + code);
+                    bookObject = Book.fromJsonWithScannedISBN(body);
+                    goToBookDetailsActivity(bookObject);
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.i(ScannerActivity.class.getSimpleName(), "Request failed with code: " + statusCode + " , Response message: " + response);
+            }
+        });
     }
 
+    private void goToBookDetailsActivity(Book bookObject){
+        Intent intent = new Intent(this, BookDetailsActivity.class);
+        intent.putExtra("BookObject", Parcels.wrap(bookObject));
+        startActivity(intent);
+        finish();
+    }
 
     private void requestCamera() {
         if (ActivityCompat.checkSelfPermission(ScannerActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
@@ -98,7 +125,6 @@ public class ScannerActivity extends AppCompatActivity {
                 Toast.makeText(this, "Failed to start camera" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }, ContextCompat.getMainExecutor(this));
-
     }
 
     private void bindCameraToPreview(ProcessCameraProvider cameraProvider) {
@@ -120,19 +146,20 @@ public class ScannerActivity extends AppCompatActivity {
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                         .build();
 
-        imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(this), new QRCodeAnalyzer(new QRCodeFoundListener() {
+        imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(this), new BarcodeAnalyzer(new BarcodeFoundListener() {
             @Override
-            public void onQRCodeFound(String _qrCode) {
-                qrCode = _qrCode;
-                qrCodeFound.setVisibility(View.VISIBLE);
+            public void barcodeFound(String _qrCode) {
+                barcode = _qrCode;
+                barcodeFoundBtn.setVisibility(View.VISIBLE);
             }
 
             @Override
-            public void qrCodeNotFound() {
-                qrCodeFound.setVisibility(View.INVISIBLE);
+            public void barcodeNotFound() {
+                barcodeFoundBtn.setVisibility(View.INVISIBLE);
             }
         }));
-        Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, imageAnalysis, preview);
+
+        cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, imageAnalysis, preview);
     }
 
     @Override

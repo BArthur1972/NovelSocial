@@ -8,23 +8,22 @@ import androidx.annotation.NonNull;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageProxy;
 
-import com.example.novelsocial.utils.QRCodeFoundListener;
+import com.example.novelsocial.utils.BarcodeFoundListener;
 import com.google.zxing.BinaryBitmap;
-import com.google.zxing.ChecksumException;
-import com.google.zxing.FormatException;
+import com.google.zxing.MultiFormatReader;
 import com.google.zxing.NotFoundException;
 import com.google.zxing.PlanarYUVLuminanceSource;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
-import com.google.zxing.multi.qrcode.QRCodeMultiReader;
 
 import java.nio.ByteBuffer;
 
-public class QRCodeAnalyzer implements ImageAnalysis.Analyzer {
-    private QRCodeFoundListener listener;
+public class BarcodeAnalyzer implements ImageAnalysis.Analyzer{
 
-    public QRCodeAnalyzer(QRCodeFoundListener mListener){
-        this.listener = mListener;
+    private final BarcodeFoundListener listener;
+
+    public BarcodeAnalyzer(BarcodeFoundListener listener){
+        this.listener = listener;
     }
 
     @Override
@@ -45,10 +44,10 @@ public class QRCodeAnalyzer implements ImageAnalysis.Analyzer {
             BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
 
             try{
-                Result result = new QRCodeMultiReader().decode(binaryBitmap);
-                listener.onQRCodeFound(result.getText());
-            }catch (FormatException | ChecksumException | NotFoundException e){
-                listener.qrCodeNotFound();
+                Result result = new MultiFormatReader().decode(binaryBitmap);
+                listener.barcodeFound(result.getText());
+            }catch (NotFoundException e){
+                listener.barcodeNotFound();
             }
         }
         image.close();
