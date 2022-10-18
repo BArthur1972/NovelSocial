@@ -18,6 +18,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.novelsocial.Adapters.BookAdapter;
 import com.example.novelsocial.client.BookClient;
+import com.example.novelsocial.databinding.ActivitySearchBinding;
 import com.example.novelsocial.models.Book;
 
 import org.json.JSONArray;
@@ -33,18 +34,22 @@ public class SearchActivity extends AppCompatActivity {
 
     private BookAdapter adapter;
     private ArrayList<Book> allBooks;
+    private ActivitySearchBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+
+        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+
+        View view = binding.getRoot();
+        setContentView(view);
 
         // Add the back button in the ActionBar to go back a previous page
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         // This is where you set up the views and click listeners
-        RecyclerView rvBooks = findViewById(R.id.postRecyclerView);
+        RecyclerView rvBooks = binding.postRecyclerView;
 
         // Initialize ArrayList
         allBooks = new ArrayList<>();
@@ -100,7 +105,10 @@ public class SearchActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_search) {
             return true;
         }
-
+        else if (item.getItemId() == R.id.action_scan_qr_code){
+            goToScannerActivity();
+            return true;
+        }
         else if (item.getItemId() == android.R.id.home) {
             this.finish();
             return true;
@@ -110,7 +118,7 @@ public class SearchActivity extends AppCompatActivity {
 
     // Make API request to fetch books using entry in SearchView
     public void fetchBooks(String bookQuery) {
-        LottieAnimationView progressAnimation = findViewById(R.id.progressAnimation);
+        LottieAnimationView progressAnimation = binding.progressAnimation;
         progressAnimation.setVisibility(View.VISIBLE);
         progressAnimation.playAnimation();
 
@@ -157,5 +165,10 @@ public class SearchActivity extends AppCompatActivity {
     public void stopProgressAnimation(LottieAnimationView animationView) {
         animationView.cancelAnimation();
         animationView.setVisibility(View.INVISIBLE);
+    }
+
+    public void goToScannerActivity() {
+        Intent intent = new Intent(this, ScannerActivity.class);
+        startActivity(intent);
     }
 }

@@ -10,7 +10,9 @@ import android.os.Bundle;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.example.novelsocial.databinding.ActivityMainBinding;
 import com.parse.ParseUser;
 
 import com.example.novelsocial.fragments.HomeFragment;
@@ -31,9 +33,13 @@ public class MainActivity extends AppCompatActivity {
         final ProfileFragment profileFragment = new ProfileFragment();
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        View view = binding.getRoot();
+        setContentView(view);
+
+        BottomNavigationView bottomNavigationView = binding.bottomNavigation;
 
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
 

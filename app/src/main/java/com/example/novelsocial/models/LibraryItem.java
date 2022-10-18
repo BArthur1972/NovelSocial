@@ -16,7 +16,6 @@ public class LibraryItem extends ParseObject {
     }
 
     public LibraryItem(){
-
     }
 
     public String getAuthorName() {

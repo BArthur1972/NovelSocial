@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.novelsocial.databinding.ActivityLoginBinding;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
@@ -16,7 +18,12 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+
+        ActivityLoginBinding binding = ActivityLoginBinding.inflate(getLayoutInflater());
+
+        // Root of the layout
+        View view = binding.getRoot();
+        setContentView(view);
 
         // Check if there's a user logged in
         // If there is, take them to MainActivity
@@ -24,12 +31,12 @@ public class LoginActivity extends AppCompatActivity {
             goToMainActivity();
         }
 
-        EditText username = findViewById(R.id.et_username);
-        EditText password = findViewById(R.id.et_password);
-        Button signInButton = findViewById(R.id.bt_sign_in);
-        Button createAccountButton = findViewById(R.id.bt_create_account);
+        EditText username = binding.etUsername;
+        EditText password = binding.etPassword;
+        Button signInButton = binding.btSignIn;
+        Button createAccountButton = binding.btCreateAccount;
 
-        signInButton.setOnClickListener((View view) -> {
+        signInButton.setOnClickListener((View v) -> {
             if (!(username.getText().toString().isEmpty()) && !(password.getText().toString().isEmpty())) {
                 logInUser(username, password);
             }
@@ -38,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        createAccountButton.setOnClickListener((View view) -> goToSignUpActivity());
+        createAccountButton.setOnClickListener((View v) -> goToSignUpActivity());
     }
 
     private void logInUser(EditText username, EditText password) {

@@ -20,7 +20,7 @@ public class BookSubjectClient {
 
     public void getBooks(final String genre, JsonHttpResponseHandler handler) {
         try {
-            String url = getApiUrl("/subjects/" + genre.toLowerCase() + ".json?limit=50");
+            String url = getApiUrl("subjects/" + genre.toLowerCase() + ".json?limit=50");
             client.get(url + URLEncoder.encode(genre, "utf-8"), handler);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
