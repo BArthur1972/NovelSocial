@@ -128,7 +128,6 @@ public class ScannerActivity extends AppCompatActivity {
     }
 
     private void bindCameraToPreview(ProcessCameraProvider cameraProvider) {
-        // previewView.setPreferredImplementationMode(PreviewView.ImplementationMode.SURFACE_VIEW);
         previewView.setPreferredImplementationMode(PreviewView.ImplementationMode.SURFACE_VIEW);
 
         Preview preview = new Preview.Builder()

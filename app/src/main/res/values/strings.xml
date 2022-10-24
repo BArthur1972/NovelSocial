@@ -13,4 +13,19 @@
     <string name="logout_menu_item">Logout</string>
     <string name="scan_qr_code">Scan QR Code</string>
     <string name="code_found_button">Code found</string>
+    <string name="new_username_field">New Username</string>
+    <string name="new_password_field">New Password</string>
+    <string name="confirm_password_field">Confirm Password</string>
+    <string name="sign_up_button_label">Sign Up</string>
+    <string name="welcome_to_novel_social_label">Welcome to Novel Social!</string>
+    <string name="let_s_create_your_new_account_message">Let\'s create your new account!</string>
+    <string name="last_name_field">Last Name</string>
+    <string name="first_name_field">First Name</string>
+    <string name="profile_photo">Profile Photo</string>
+    <string name="name_placeholder">Name</string>
+    <string name="fun_fact">Fun Fact</string>
+    <string name="profile_full_name_placeholder">\@Username</string>
+    <string name="no_of_library_items">0 books</string>
+    <string name="items_in_your_library_label">In Your Library</string>
+    <string name="account_options_label">Account Options</string>
 </resources>
