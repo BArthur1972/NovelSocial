@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.141" />
         <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.3005" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.3005" />
         <entry key="app/src/main/res/drawable/ic_baseline_library_books_24.xml" value="0.3005" />
+        <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.141" />
         <entry key="app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.3005" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.22356091030789826" />
@@ -16,12 +18,13 @@
         <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.28494943998107064" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.279193115234375" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.26666666666666666" />
+        <entry key="app/src/main/res/layout/activity_web_view.xml" value="0.15982776089159068" />
         <entry key="app/src/main/res/layout/book_list.xml" value="0.27823691460055094" />
         <entry key="app/src/main/res/layout/book_list_item.xml" value="0.16388044579533942" />
         <entry key="app/src/main/res/layout/fragment_book_details.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.12416107382550336" />
         <entry key="app/src/main/res/layout/fragment_library.xml" value="0.10249307479224377" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2722371967654987" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1828793774319066" />
         <entry key="app/src/main/res/layout/library_item.xml" value="0.19072164948453607" />
         <entry key="app/src/main/res/layout/rv_child_layout.xml" value="0.15" />
