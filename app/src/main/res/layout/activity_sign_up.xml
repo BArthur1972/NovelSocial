@@ -40,7 +40,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_header" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_sign_up_firstname"
+                android:id="@+id/et_sign_up_full_name"
                 android:layout_width="252dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -51,32 +51,11 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
-                    android:id="@+id/et_sign_up_firstname_field"
+                    android:id="@+id/et_sign_up_full_name_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:hint="@string/first_name_field"
-                    android:inputType="text"
-                    android:textColor="@color/black" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_sign_up_lastname"
-                android:layout_width="252dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_sign_up_firstname">
-
-                <EditText
-                    android:id="@+id/et_sign_up_lastname_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:hint="@string/last_name_field"
+                    android:hint="@string/full_name_field"
                     android:inputType="text"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -90,7 +69,7 @@
                 android:layout_marginEnd="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_sign_up_lastname">
+                app:layout_constraintTop_toBottomOf="@+id/et_sign_up_full_name">
 
                 <EditText
                     android:id="@+id/et_sign_up_username_field"

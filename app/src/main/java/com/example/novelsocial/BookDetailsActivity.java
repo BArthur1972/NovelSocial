@@ -39,7 +39,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         setContentView(view);
 
         // Retrieve book data from Book Object in the bundle
-        Book book = (Book) Parcels.unwrap(getIntent().getParcelableExtra("BookObject"));
+        Book book = Parcels.unwrap(getIntent().getParcelableExtra("BookObject"));
 
         // Add the back button in the ActionBar to go back a previous page
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -49,6 +49,9 @@ public class BookDetailsActivity extends AppCompatActivity {
         addBookToLibrary.setOnClickListener(v -> {
             ParseUser currentUser = ParseUser.getCurrentUser();
             LibraryItem libraryItem = new LibraryItem(book);
+
+            // Set item to the current user
+            libraryItem.setOwner(currentUser);
 
             libraryItem.saveInBackground(e -> {
                 if (e != null) {

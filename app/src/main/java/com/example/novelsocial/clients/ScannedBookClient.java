@@ -1,4 +1,4 @@
-package com.example.novelsocial.client;
+package com.example.novelsocial.clients;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;

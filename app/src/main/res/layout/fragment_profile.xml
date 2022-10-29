@@ -23,7 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/name_placeholder"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -54,7 +53,6 @@
                 android:id="@+id/tv_profile_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/profile_full_name_placeholder"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -75,6 +73,7 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <TextView
+                android:id="@+id/tv_no_of_library_items"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -110,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="30sp"
+                android:layout_marginTop="15sp"
                 android:gravity="start"
                 android:text="@string/account_options_label"
                 android:textSize="20sp"

@@ -17,7 +17,7 @@ import android.view.View;
 import com.airbnb.lottie.LottieAnimationView;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.novelsocial.Adapters.BookAdapter;
-import com.example.novelsocial.client.BookClient;
+import com.example.novelsocial.clients.BookClient;
 import com.example.novelsocial.databinding.ActivitySearchBinding;
 import com.example.novelsocial.models.Book;
 
