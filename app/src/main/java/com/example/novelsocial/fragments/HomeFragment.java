@@ -12,14 +12,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.novelsocial.Adapters.HomeParentItemAdapter;
 import com.example.novelsocial.SearchActivity;
-import com.example.novelsocial.client.BookSubjectClient;
+import com.example.novelsocial.clients.BookSubjectClient;
 import com.example.novelsocial.databinding.FragmentHomeBinding;
 import com.example.novelsocial.models.HomeChildItem;
 import com.example.novelsocial.models.HomeParentItem;
+import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +34,7 @@ import okhttp3.Headers;
 public class HomeFragment extends Fragment {
 
     FragmentHomeBinding binding;
+    TextView welcomeLabel;
     RecyclerView parentRecyclerView;
     List<HomeParentItem> parentItemList;
     List<HomeChildItem> childItemList;
@@ -54,6 +57,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        welcomeLabel = binding.tvNameLabel;
+        welcomeLabel.setText(String.format("Welcome %s!", ParseUser.getCurrentUser().get("fullName")));
 
         parentRecyclerView = binding.rvParentRecyclerView;
 

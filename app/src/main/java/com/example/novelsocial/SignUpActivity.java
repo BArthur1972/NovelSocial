@@ -24,8 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        EditText firstname = binding.etSignUpFirstnameField;
-        EditText lastname = binding.etSignUpLastnameField;
+        EditText fullName = binding.etSignUpFullNameField;
         EditText username = binding.etSignUpUsernameField;
         EditText password = binding.etSignUpPasswordField;
         EditText confirmPassword = binding.etConfirmPasswordField;
@@ -33,20 +32,19 @@ public class SignUpActivity extends AppCompatActivity {
 
         signUpButton.setOnClickListener((View v) -> {
             if (!(username.getText().toString().isEmpty()) && !(password.getText().toString().isEmpty())) {
-                signUpUser(firstname, lastname, username, password, confirmPassword);
+                signUpUser(fullName ,username, password, confirmPassword);
             } else {
                 Toast.makeText(getApplicationContext(), "Check your username or password", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void signUpUser(EditText firstname, EditText lastname, EditText username, EditText password, EditText confirmPassword) {
+    private void signUpUser(EditText fullName, EditText username, EditText password, EditText confirmPassword) {
         ParseUser user = new ParseUser();
         if (!password.getText().toString().equals(confirmPassword.getText().toString())) {
             Toast.makeText(getApplicationContext(), "Passwords do not match, Please Try Again", Toast.LENGTH_SHORT).show();
         } else {
-            user.put("firstname", firstname.getText().toString());
-            user.put("lastname", lastname.getText().toString());
+            user.put("fullName", fullName.getText().toString());
             user.setUsername(username.getText().toString());
             user.setPassword(password.getText().toString());
             user.signUpInBackground((ParseException e) -> {

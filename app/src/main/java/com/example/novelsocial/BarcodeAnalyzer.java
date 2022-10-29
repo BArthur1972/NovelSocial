@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageProxy;
 
-import com.example.novelsocial.utils.BarcodeFoundListener;
+import com.example.novelsocial.interfaces.BarcodeFoundListener;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.MultiFormatReader;
 import com.google.zxing.NotFoundException;

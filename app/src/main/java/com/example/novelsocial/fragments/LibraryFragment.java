@@ -17,9 +17,11 @@ import com.example.novelsocial.Adapters.LibraryItemAdapter;
 import com.example.novelsocial.databinding.FragmentLibraryBinding;
 import com.example.novelsocial.models.LibraryItem;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LibraryFragment extends Fragment {
 
@@ -57,12 +59,22 @@ public class LibraryFragment extends Fragment {
         rvLibrary.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         ParseQuery<LibraryItem> query = ParseQuery.getQuery(LibraryItem.class);
+        query.include("owner");
+
         query.findInBackground((objects, e) -> {
             if (e != null) {
                 Toast.makeText(getContext(), "Failed to get items", Toast.LENGTH_SHORT).show();
                 Log.e(getClass().getSimpleName(), e.getMessage());
             }
-            libraryItems.addAll(objects);
+
+            String userId = ParseUser.getCurrentUser().getObjectId();
+
+            for (LibraryItem item: objects) {
+                if (Objects.equals(item.getUser().getObjectId(), userId)) {
+                    libraryItems.add(item);
+                }
+            }
+
             adapter.notifyDataSetChanged();
         });
     }

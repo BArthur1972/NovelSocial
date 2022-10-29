@@ -22,10 +22,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
-import com.example.novelsocial.client.ScannedBookClient;
+import com.example.novelsocial.clients.ScannedBookClient;
 import com.example.novelsocial.databinding.ActivityScannerBinding;
 import com.example.novelsocial.models.Book;
-import com.example.novelsocial.utils.BarcodeFoundListener;
+import com.example.novelsocial.interfaces.BarcodeFoundListener;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import org.json.JSONException;

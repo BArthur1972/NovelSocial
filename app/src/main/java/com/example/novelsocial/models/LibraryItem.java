@@ -2,6 +2,7 @@ package com.example.novelsocial.models;
 
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 @ParseClassName("LibraryItem")
 public class LibraryItem extends ParseObject {
@@ -40,5 +41,15 @@ public class LibraryItem extends ParseObject {
 
     public void setCoverUrl(String imageUrl) {
         put(KEY_COVER_URL, imageUrl);
+    }
+
+    // Associate each item with a specific user
+    public void setOwner(ParseUser user) {
+        put("owner", user);
+    }
+
+    // Get the user who owns this item
+    public ParseUser getUser()  {
+        return getParseUser("owner");
     }
 }

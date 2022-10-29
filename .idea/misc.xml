@@ -22,7 +22,10 @@
         <entry key="app/src/main/res/layout/book_list.xml" value="0.27823691460055094" />
         <entry key="app/src/main/res/layout/book_list_item.xml" value="0.16388044579533942" />
         <entry key="app/src/main/res/layout/fragment_book_details.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.12416107382550336" />
+        <entry key="app/src/main/res/layout/fragment_change_full_name_dialog.xml" value="0.1925925925925926" />
+        <entry key="app/src/main/res/layout/fragment_change_password_dialog.xml" value="0.3145833333333333" />
+        <entry key="app/src/main/res/layout/fragment_change_username_and_password_dialog.xml" value="0.19026794433593752" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.14444444444444443" />
         <entry key="app/src/main/res/layout/fragment_library.xml" value="0.10249307479224377" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1828793774319066" />
