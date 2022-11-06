@@ -1,13 +1,12 @@
 package com.example.novelsocial.clients;
 
+
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 public class BookClient {
-    private static final String API_BASE_URL = "https://openlibrary.org/";
+
+    private static final String API_BASE_URL = "https://openlibrary.org/api/books?";
     private final AsyncHttpClient client;
 
     public BookClient() {
@@ -18,12 +17,8 @@ public class BookClient {
         return API_BASE_URL + relativeUrl;
     }
 
-    public void getBooks(final String query, JsonHttpResponseHandler handler) {
-        try {
-            String url = getApiUrl("search.json?q=");
-            client.get(url + URLEncoder.encode(query, "utf-8"), handler);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+    public void getBook(final String bookId, JsonHttpResponseHandler handler) {
+        String url = getApiUrl("bibkeys=OLID:" + bookId + "&jscmd=data&format=json");
+        client.get(url, handler);
     }
 }

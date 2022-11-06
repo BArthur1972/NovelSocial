@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment {
 
         // Populate recycler view with books based on genre.
         for (String genre: genres) {
-            parentAdapter = new HomeParentItemAdapter(getContext(), parentItemList);
+            parentAdapter = new HomeParentItemAdapter(requireContext(), parentItemList);
 
             // Set adapter on RecyclerView
             parentRecyclerView.setAdapter(parentAdapter);

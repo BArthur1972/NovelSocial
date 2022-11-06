@@ -61,6 +61,8 @@ public class LibraryFragment extends Fragment {
         ParseQuery<LibraryItem> query = ParseQuery.getQuery(LibraryItem.class);
         query.include("owner");
 
+        query.orderByDescending("createdAt");
+
         query.findInBackground((objects, e) -> {
             if (e != null) {
                 Toast.makeText(getContext(), "Failed to get items", Toast.LENGTH_SHORT).show();

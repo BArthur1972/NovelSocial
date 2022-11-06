@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.novelsocial.R;
+import com.example.novelsocial.interfaces.OnItemClickListener;
 import com.example.novelsocial.models.Book;
 
 import java.util.ArrayList;
@@ -30,10 +31,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     public BookAdapter(Context context, ArrayList<Book> allBooks) {
         books = allBooks;
         this.context = context;
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(View itemView, int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -57,7 +54,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             itemView.setOnClickListener((View view) -> clickListener.onItemClick(itemView, getAdapterPosition()));
         }
     }
-
 
     @NonNull
     @Override
@@ -91,7 +87,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         return books.size();
     }
 
-    // Easy access to the context object in the recyclerview
+    // Easy access to the context object in the Recycler View
     private Context getContext() {
         return context;
     }

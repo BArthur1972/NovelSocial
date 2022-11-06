@@ -17,7 +17,7 @@ import android.view.View;
 import com.airbnb.lottie.LottieAnimationView;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.novelsocial.Adapters.BookAdapter;
-import com.example.novelsocial.clients.BookClient;
+import com.example.novelsocial.clients.BookSearchClient;
 import com.example.novelsocial.databinding.ActivitySearchBinding;
 import com.example.novelsocial.models.Book;
 
@@ -122,8 +122,8 @@ public class SearchActivity extends AppCompatActivity {
         progressAnimation.setVisibility(View.VISIBLE);
         progressAnimation.playAnimation();
 
-        // Create BookClient object and call the getBooks method which makes the API call
-        BookClient client = new BookClient();
+        // Create BookSearchClient object and call the getBooks method which makes the API call
+        BookSearchClient client = new BookSearchClient();
         client.getBooks(bookQuery, new JsonHttpResponseHandler() {
 
             @Override
