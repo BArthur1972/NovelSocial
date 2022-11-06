@@ -34,12 +34,12 @@ public class WebViewActivity extends AppCompatActivity {
 
         configureWebView();
 
-        // Get book ISBN for url
+        // Get book ISBN or OpenLibraryId for url
         Bundle bundle = getIntent().getExtras();
+        String[] bookData = bundle.getStringArray("BookData");
+        String url = (bookData[0] == null) ? "https://openlibrary.org/books/" + bookData[1] : "https://openlibrary.org/isbn/" + bookData[0];
 
-        String isbn = bundle.getString("BookISBN");
-
-        webView.loadUrl("https://openlibrary.org/isbn/" + isbn);
+        webView.loadUrl(url);
 
         webView.setWebViewClient(new WebViewClient() {
             @Override

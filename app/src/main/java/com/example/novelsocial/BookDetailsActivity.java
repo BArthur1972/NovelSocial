@@ -68,7 +68,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         // Navigate to WebView Activity when button is clicked
         Button toWebViewActivity = findViewById(R.id.bt_web_view_activity);
 
-        toWebViewActivity.setOnClickListener(v -> goToWebViewActivity((book.getISBN())));
+        toWebViewActivity.setOnClickListener(v -> goToWebViewActivity((book.getISBN()), book.getOpenLibraryId()));
 
         // Find all components we want to populate
         ImageView bookImageCover = binding.ivBookCoverView;
@@ -112,9 +112,9 @@ public class BookDetailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void goToWebViewActivity(String isbn) {
+    public void goToWebViewActivity(String isbn, String openLibraryId) {
         Intent intent = new Intent(BookDetailsActivity.this, WebViewActivity.class);
-        intent.putExtra("BookISBN", isbn);
+        intent.putExtra("BookData", new String[]{isbn, openLibraryId});
         startActivity(intent);
     }
 }

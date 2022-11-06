@@ -27,10 +27,11 @@
                 android:id="@+id/tv_child_list_item_author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:background="@color/black"
                 android:layout_alignParentBottom="true"
-                android:text="@string/bookAuthor"
-                android:textSize="11sp"
-                android:textStyle="bold"></TextView>
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 

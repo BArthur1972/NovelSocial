@@ -23,64 +23,6 @@ public class Book {
     public Book() {
     }
 
-    public String getOpenLibraryId() {
-        return openLibraryId;
-    }
-
-    public void setOpenLibraryId(String id) { this.openLibraryId = id;}
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public String getISBN() {
-        return ISBN;
-    }
-
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public int getPages() {
-        return pages;
-    }
-
-    public void setPages(int pages) {
-        this.pages = pages;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public String getBookCoverUrl() {
-        return "https://covers.openlibrary.org/b/olid/"+ openLibraryId +"-L.jpg?default=false";
-    }
-
     // Parse a JSONObject for a book's details and return a Book object
     public static Book fromJson(JSONObject jsonObject) {
         Book book = new Book();
@@ -104,7 +46,7 @@ public class Book {
 
             // Assign the number of pages for the book
             if (jsonObject.has("number_of_pages_median")) {
-                Integer bookPages = (Integer) jsonObject.getInt("number_of_pages_median");
+                int bookPages = jsonObject.getInt("number_of_pages_median");
                 book.setPages(bookPages);
             }
 
@@ -141,15 +83,19 @@ public class Book {
                 JSONObject identifiers = jsonObject.getJSONObject("identifiers");
 
                 // Assign OpenLibraryId
-                JSONArray openLibraryArray = identifiers.getJSONArray("openlibrary");
-                if (openLibraryArray.length() > 0) {
-                    book.setOpenLibraryId(openLibraryArray.getString(0));
+                if (identifiers.has("openlibrary")) {
+                    JSONArray openLibraryArray = identifiers.getJSONArray("openlibrary");
+                    if (openLibraryArray.length() > 0) {
+                        book.setOpenLibraryId(openLibraryArray.getString(0));
+                    }
                 }
 
                 // Assign ISBN
-                JSONArray isbnArray = identifiers.getJSONArray("isbn_13");
-                if (isbnArray.length() > 0) {
-                    book.setISBN(isbnArray.getString(0));
+                if (identifiers.has("isbn_13")) {
+                    JSONArray isbnArray = identifiers.getJSONArray("isbn_13");
+                    if (isbnArray.length() > 0) {
+                        book.setISBN(isbnArray.getString(0));
+                    }
                 }
             }
 
@@ -164,7 +110,7 @@ public class Book {
 
             // Assign the number of pages for the book
             if (jsonObject.has("number_of_pages")) {
-                Integer bookPages = (Integer) jsonObject.getInt("number_of_pages");
+                int bookPages = jsonObject.getInt("number_of_pages");
                 book.setPages(bookPages);
             }
 
@@ -178,12 +124,69 @@ public class Book {
 
             // Assign title and author
             book.title = jsonObject.has("title") ? jsonObject.getString("title") : "";
-            book.author = getAuthorForScannedBook(jsonObject);
+            book.author = getAuthorForBook(jsonObject);
 
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
         }
+        return book;
+    }
+
+    public static Book fromJSONWithOpenLibraryId(JSONObject data) {
+        Book book = new Book();
+
+        try {
+            // Assign number of pages
+            if (data.has("number_of_pages")) {
+                book.setPages(data.getInt("number_of_pages"));
+            }
+
+            // Assign the OpenLibraryId and ISBN for the book
+            if (data.has("identifiers")) {
+                JSONObject identifiers = data.getJSONObject("identifiers");
+
+                // Assign OpenLibraryId
+                if (identifiers.has("openlibrary")) {
+                    JSONArray openLibraryArray = identifiers.getJSONArray("openlibrary");
+                    if (openLibraryArray.length() > 0) {
+                        book.setOpenLibraryId(openLibraryArray.getString(0));
+                    }
+                }
+
+                // Assign ISBN
+                if (identifiers.has("isbn_10")) {
+                    JSONArray isbnArray = identifiers.getJSONArray("isbn_10");
+                    if (isbnArray.length() > 0) {
+                        book.setISBN(isbnArray.getString(0));
+                    }
+                }
+            }
+
+            // Assign the publisher for the book
+            if (data.has("publishers")) {
+                JSONArray jsonArray = data.getJSONArray("publishers");
+                if (jsonArray.length() > 0) {
+                    JSONObject firstPublisher = (JSONObject) jsonArray.get(0);
+                    book.setPublisher(firstPublisher.getString("name"));
+                }
+            }
+
+            // Assign the genre of the book
+            if (data.has("subjects")) {
+                JSONArray jsonArray = data.getJSONArray("subjects");
+                JSONObject firstGenreObject = (JSONObject) jsonArray.get(0);
+                book.setGenre(firstGenreObject.getString("name"));
+            }
+
+            // Get author or authors and book title for the book
+            book.setAuthor(getAuthorForBook(data));
+            book.title = data.has("title") ? data.getString("title") : "";
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
         return book;
     }
 
@@ -220,7 +223,7 @@ public class Book {
         }
     }
 
-    private static String getAuthorForScannedBook(final JSONObject jsonObject) {
+    private static String getAuthorForBook(final JSONObject jsonObject) {
         try {
             final JSONArray authors = jsonObject.getJSONArray("authors");
             int numAuthors = authors.length();
@@ -233,5 +236,65 @@ public class Book {
         } catch (JSONException e) {
             return "";
         }
+    }
+
+    public String getOpenLibraryId() {
+        return openLibraryId;
+    }
+
+    public void setOpenLibraryId(String id) {
+        this.openLibraryId = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getBookCoverUrl() {
+        return "https://covers.openlibrary.org/b/olid/" + openLibraryId + "-L.jpg?default=false";
     }
 }
