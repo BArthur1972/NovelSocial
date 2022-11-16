@@ -12,13 +12,13 @@ import java.util.ArrayList;
 @Parcel
 public class Book {
 
-    private String openLibraryId;
-    private String author;
-    private String title;
-    private String publisher;
-    private int pages;
-    private String ISBN;
-    private String genre;
+    String openLibraryId;
+    String author;
+    String title;
+    String publisher;
+    int pages;
+    String ISBN;
+    String genre;
 
     public Book() {
     }
