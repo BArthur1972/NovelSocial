@@ -50,7 +50,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         // Add the back button in the ActionBar to go back a previous page
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        // Add book to Library if it is has not already been added
+        // Add book to Library if it has not already been added
         // The button will only show if the book has not been added
         if (book != null) {
             displayFavouriteButton(book);
