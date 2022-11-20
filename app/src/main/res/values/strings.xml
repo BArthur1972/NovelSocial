@@ -35,4 +35,5 @@
     <string name="change_username_dialog_header">Change your Username</string>
     <string name="change_password_dialog_header">Change your Password</string>
     <string name="update_label">Update</string>
+    <string name="add_to_your_library">Add to your library</string>
 </resources>
