@@ -55,12 +55,6 @@ public class WebViewActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_book_details, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Navigate back to search activity when back button is pressed
         if (item.getItemId() == android.R.id.home) {

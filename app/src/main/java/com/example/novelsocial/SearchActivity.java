@@ -3,7 +3,6 @@ package com.example.novelsocial;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -76,10 +75,8 @@ public class SearchActivity extends AppCompatActivity {
 
         // Set up search view in ActionBar
         final MenuItem searchItem = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        final SearchView searchView = (SearchView) searchItem.getActionView();
 
-        // Expand the search view and request focus
-        searchItem.expandActionView();
         searchView.requestFocus();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
