@@ -1,9 +1,12 @@
 package com.example.novelsocial;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +15,8 @@ import android.widget.Toast;
 import com.example.novelsocial.databinding.ActivitySignUpBinding;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+
+import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -23,6 +28,9 @@ public class SignUpActivity extends AppCompatActivity {
 
         View view = binding.getRoot();
         setContentView(view);
+
+        // Add the back button in the ActionBar to go back a previous page
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         EditText fullName = binding.etSignUpFullNameField;
         EditText username = binding.etSignUpUsernameField;
@@ -37,6 +45,23 @@ public class SignUpActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Check your username or password", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // Navigate back to search activity when back button is pressed
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void signUpUser(EditText fullName, EditText username, EditText password, EditText confirmPassword) {

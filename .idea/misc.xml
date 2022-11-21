@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_list_item_1.xml" value="0.15932117527862208" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.141" />
         <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.3005" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.3005" />
@@ -14,32 +15,34 @@
         <entry key="app/src/main/res/layout-v26/activity_book_details.xml" value="0.1" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.22356091030789826" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.2609375" />
-        <entry key="app/src/main/res/layout/activity_book_details.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.18877410888671875" />
+        <entry key="app/src/main/res/layout/account_options_list_item.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_book_details.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.28494943998107064" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.279193115234375" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.26666666666666666" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.28617553710937504" />
         <entry key="app/src/main/res/layout/activity_web_view.xml" value="0.15982776089159068" />
         <entry key="app/src/main/res/layout/book_list.xml" value="0.27823691460055094" />
         <entry key="app/src/main/res/layout/book_list_item.xml" value="0.16388044579533942" />
         <entry key="app/src/main/res/layout/fragment_book_details.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_change_full_name_dialog.xml" value="0.1925925925925926" />
-        <entry key="app/src/main/res/layout/fragment_change_password_dialog.xml" value="0.3145833333333333" />
+        <entry key="app/src/main/res/layout/fragment_change_full_name_dialog.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_change_password_dialog.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_change_username_and_password_dialog.xml" value="0.19026794433593752" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.14444444444444443" />
+        <entry key="app/src/main/res/layout/fragment_change_username_dialog.xml" value="0.15932117527862208" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_library.xml" value="0.10249307479224377" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1828793774319066" />
         <entry key="app/src/main/res/layout/library_item.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/rv_child_layout.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/rv_child_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/rv_parent_layout.xml" value="0.1" />
         <entry key="app/src/main/res/menu/bottom_navigation.xml" value="0.3302083333333333" />
         <entry key="app/src/main/res/menu/menu_book_details.xml" value="0.25874125874125875" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.34322916666666664" />
-        <entry key="app/src/main/res/menu/menu_main.xml" value="0.22839506172839505" />
-        <entry key="app/src/main/res/menu/menu_search.xml" value="0.21388888888888888" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/menu_search.xml" value="0.1" />
       </map>
     </option>
   </component>
@@ -52,7 +55,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.15374873353596757" />
+        <option name="scale" value="0.1" />
       </ProjectState>
     </option>
   </component>

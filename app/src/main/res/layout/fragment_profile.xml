@@ -4,29 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".fragments.ProfileFragment">
 
-    <ImageView
-        android:id="@+id/iv_user_profile_photo"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/image_container"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="40dp"
-        android:background="@color/black"
-        android:contentDescription="@string/profile_photo"
+        app:cardCornerRadius="100dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/profile_placeholder" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_user_profile_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:contentDescription="@string/profile_photo"
+            app:srcCompat="@drawable/profile_placeholder" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tv_user_profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_user_profile_photo" />
+        app:layout_constraintTop_toBottomOf="@id/image_container" />
 
     <LinearLayout
         android:id="@+id/ll_container"
@@ -53,6 +62,7 @@
                 android:id="@+id/tv_profile_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -78,6 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/no_of_library_items"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
 
 
@@ -85,6 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/items_in_your_library_label"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -112,6 +124,7 @@
                 android:layout_marginTop="15sp"
                 android:gravity="start"
                 android:text="@string/account_options_label"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

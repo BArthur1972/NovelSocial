@@ -36,4 +36,6 @@
     <string name="change_password_dialog_header">Change your Password</string>
     <string name="update_label">Update</string>
     <string name="add_to_your_library">Add to your library</string>
+    <string name="remove">Remove</string>
+    <string name="image">Image</string>
 </resources>

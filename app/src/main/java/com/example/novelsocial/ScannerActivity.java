@@ -17,6 +17,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Size;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcels;
 
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 import okhttp3.Headers;
@@ -54,6 +56,9 @@ public class ScannerActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        // Add the back button in the ActionBar to go back a previous page
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
         previewView = binding.barcodePreview;
         barcodeFoundBtn = binding.btScanBarcode;
 
@@ -71,6 +76,21 @@ public class ScannerActivity extends AppCompatActivity {
 
         cameraProviderListenableFuture = ProcessCameraProvider.getInstance(ScannerActivity.this.getApplicationContext());
         requestCamera();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // Navigate back to search activity when back button is pressed
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void getBookObject(String code) {
@@ -108,11 +128,7 @@ public class ScannerActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(ScannerActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             startCamera();
         } else {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(ScannerActivity.this, Manifest.permission.CAMERA)) {
-                ActivityCompat.requestPermissions(ScannerActivity.this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CAMERA);
-            } else {
-                ActivityCompat.requestPermissions(ScannerActivity.this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CAMERA);
-            }
+            ActivityCompat.requestPermissions(ScannerActivity.this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CAMERA);
         }
     }
 

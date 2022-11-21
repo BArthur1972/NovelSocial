@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.novelsocial.LoginActivity;
+import com.example.novelsocial.R;
 import com.example.novelsocial.databinding.FragmentProfileBinding;
 import com.example.novelsocial.interfaces.DialogListener;
 import com.example.novelsocial.models.LibraryItem;
@@ -124,7 +125,7 @@ public class ProfileFragment extends Fragment implements DialogListener {
 
         accountOptionsListView.setNestedScrollingEnabled(true);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, accountOptions);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.account_options_list_item, R.id.tv_options, accountOptions);
         accountOptionsListView.setAdapter(adapter);
 
         accountOptionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -182,7 +183,6 @@ public class ProfileFragment extends Fragment implements DialogListener {
                 } else {
                     Toast.makeText(getContext(), "Failed To Logout", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }
