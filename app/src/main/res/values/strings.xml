@@ -38,4 +38,8 @@
     <string name="add_to_your_library">Add to your library</string>
     <string name="remove">Remove</string>
     <string name="image">Image</string>
+    <string name="comments">Comments</string>
+    <string name="toggles_comment_section">Toggles comment section</string>
+    <string name="add_comment">Add Comment</string>
+    <string name="what_are_your_thoughts_on_the_book">What are your thoughts?</string>
 </resources>

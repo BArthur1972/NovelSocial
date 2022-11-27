@@ -22,23 +22,23 @@
                 android:layout_marginTop="72dp"
                 android:background="@color/black"
                 android:contentDescription="@string/book_cover_description"
-                app:srcCompat="@drawable/profile_placeholder"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/profile_placeholder" />
 
             <TextView
                 android:id="@+id/tv_book_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
-                android:text="Title"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_book_cover_view" />
+                app:layout_constraintTop_toBottomOf="@+id/iv_book_cover_view"
+                tools:text="Title" />
 
             <TextView
                 android:id="@+id/tv_author_name"
@@ -47,60 +47,60 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginRight="10dp"
-                android:text="Author"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_book_title" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_book_title"
+                tools:text="Author" />
 
             <TextView
                 android:id="@+id/tv_publisher_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Publisher"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_author_name" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_author_name"
+                tools:text="Publisher" />
 
             <TextView
                 android:id="@+id/tv_genre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Genre"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_publisher_name" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_publisher_name"
+                tools:text="Genre" />
 
             <TextView
                 android:id="@+id/tv_no_of_pages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="0"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_genre" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_genre"
+                tools:text="0" />
 
             <Button
                 android:id="@+id/bt_web_view_activity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:text="@string/open_in_web"
                 app:cornerRadius="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_no_of_pages"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_no_of_pages"
+                app:layout_constraintVertical_bias="0.109" />
 
             <Button
                 android:id="@+id/bt_add_to_library"
@@ -109,9 +109,76 @@
                 android:text="@string/add_to_your_library"
                 android:visibility="gone"
                 app:cornerRadius="18dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bt_web_view_activity" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_comment_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bt_add_to_library">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center"
+                    android:text="@string/comments"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/ib_toggle_comments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:contentDescription="@string/toggles_comment_section"
+                    android:src="@drawable/ic_baseline_arrow_drop_down_24" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_comment_header"
+                app:layout_constraintVertical_bias="0.0">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <EditText
+                android:id="@+id/et_comment_box"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/white"
+                android:hint="@string/what_are_your_thoughts_on_the_book"
+                android:inputType="text"
+                app:layout_constraintEnd_toStartOf="@+id/bt_add_comment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvComments" />
+
+            <Button
+                android:id="@+id/bt_add_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/add_comment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvComments" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
