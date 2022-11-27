@@ -16,7 +16,7 @@
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.22356091030789826" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.2609375" />
         <entry key="app/src/main/res/layout/account_options_list_item.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/activity_book_details.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_book_details.xml" value="0.11981566820276497" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.28494943998107064" />
@@ -26,6 +26,7 @@
         <entry key="app/src/main/res/layout/activity_web_view.xml" value="0.15982776089159068" />
         <entry key="app/src/main/res/layout/book_list.xml" value="0.27823691460055094" />
         <entry key="app/src/main/res/layout/book_list_item.xml" value="0.16388044579533942" />
+        <entry key="app/src/main/res/layout/comment_item.xml" value="0.18439716312056736" />
         <entry key="app/src/main/res/layout/fragment_book_details.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_change_full_name_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_change_password_dialog.xml" value="0.1" />

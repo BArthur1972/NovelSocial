@@ -2,6 +2,7 @@ package com.example.novelsocial;
 
 import android.app.Application;
 
+import com.example.novelsocial.models.BookComments;
 import com.example.novelsocial.models.LibraryItem;
 import com.parse.Parse;
 import com.parse.ParseObject;
@@ -13,6 +14,7 @@ public class ParseApp extends Application {
 
         // Register Subclasses
         ParseObject.registerSubclass(LibraryItem.class);
+        ParseObject.registerSubclass(BookComments.class);
 
         // Connect parse app to dashboard
         Parse.initialize(new Parse.Configuration.Builder(this)
